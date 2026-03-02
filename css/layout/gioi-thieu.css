@@ -15,7 +15,6 @@
   inset: 0;
 
   /* xử lý lại phần ảnh này do lỗi chân footer */
-  background-image: url("/assets/images/logo/ban0ner.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

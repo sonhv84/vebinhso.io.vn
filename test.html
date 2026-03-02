@@ -1,313 +1,120 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Báo cáo thủ đoạn lừa đảo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vệ Binh Số - Cổng Thông Tin Cảnh Báo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --danger: #e74c3c;
+            --warning: #f1c40f;
+            --info: #3498db;
+            --text-main: #2c3e50;
+            --text-sub: #5f6368;
+            --bg-body: #f8f9fa;
+        }
 
-  <!-- Font Awesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  />
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            margin: 0; padding: 20px;
+        }
 
-  <style>
-    /* ================= RESET ================= */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    }
+        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border-radius: 8px; }
 
-    body {
-      background: #f4f6f8;
-      color: #1f2937;
-    }
+        /* Style Báo chí */
+        .category-tag { font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; color: var(--danger); margin-bottom: 10px; display: block; }
+        
+        h1 { font-family: 'Playfair Display', serif; font-size: 36px; line-height: 1.2; margin: 10px 0 20px; color: #1a1a1a; }
 
-    /* ================= SECTION ================= */
-    .report-section {
-      padding: 4rem 1rem;
-    }
+        .post-meta { font-size: 14px; color: var(--text-sub); border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 25px; display: flex; justify-content: space-between; }
 
-    /* ================= FORM CARD ================= */
-    .report-form {
-      max-width: 900px;
-      margin: auto;
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 3rem;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.08);
-    }
+        .main-img { width: 100%; height: 400px; object-fit: cover; border-radius: 4px; margin-bottom: 10px; }
+        .img-caption { font-size: 13px; color: var(--text-sub); text-align: center; font-style: italic; margin-bottom: 30px; display: block; }
 
-    .form-title {
-      text-align: center;
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: #dc2626;
-      margin-bottom: 0.5rem;
-    }
+        /* Content Styling */
+        .article-content h3 { font-size: 22px; margin-top: 30px; color: #1a1a1a; border-left: 4px solid var(--danger); padding-left: 15px; }
+        .article-content p { font-size: 18px; margin-bottom: 20px; color: #333; text-align: justify; }
 
-    .form-subtitle {
-      text-align: center;
-      color: #64748b;
-      margin-bottom: 2.5rem;
-      font-size: 1rem;
-    }
+        .warning-box { background: #fff5f5; border: 1px dashed var(--danger); padding: 20px; border-radius: 8px; margin: 30px 0; position: relative; }
+        .warning-box::before { content: '⚠ CẢNH BÁO'; position: absolute; top: -12px; left: 20px; background: var(--danger); color: #fff; padding: 2px 10px; font-size: 12px; font-weight: bold; border-radius: 4px; }
 
-    /* ================= FORM GRID ================= */
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-      margin-bottom: 1.25rem;
-    }
+        .blacklist-section { background: #f1f3f4; padding: 20px; border-radius: 8px; margin-top: 40px; }
+        .blacklist-section h4 { margin-top: 0; color: #d93025; }
+        .blacklist-item { font-family: monospace; background: #fff; padding: 2px 6px; border-radius: 3px; margin-right: 5px; font-size: 14px; border: 1px solid #ddd; }
 
-    .form-group {
-      margin-bottom: 1.25rem;
-    }
-
-    /* ================= INPUT ================= */
-    input,
-    select,
-    textarea {
-      width: 100%;
-      padding: 14px 16px;
-      border-radius: 12px;
-      border: 1px solid #e5e7eb;
-      font-size: 1rem;
-      outline: none;
-      transition: 0.2s;
-      background: #ffffff;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: #2563eb;
-      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 140px;
-    }
-
-    /* ================= UPLOAD (FIX CHUẨN) ================= */
-    .upload-box {
-      display: flex;                 /* QUAN TRỌNG */
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      width: 100%;
-      min-height: 180px;             /* QUAN TRỌNG */
-
-      border: 2px dashed #cbd5e1;
-      border-radius: 14px;
-      padding: 2rem 1.5rem;
-
-      text-align: center;
-      cursor: pointer;
-      color: #475569;
-      background: #ffffff;
-
-      transition: all 0.25s ease;
-    }
-
-    .upload-box i {
-      font-size: 2.4rem;
-      color: #2563eb;
-      margin-bottom: 0.75rem;
-    }
-
-    .upload-box strong {
-      font-size: 1rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .upload-box p {
-      font-size: 0.875rem;
-      color: #64748b;
-      max-width: 420px;
-      line-height: 1.4;
-    }
-
-    .upload-box:hover {
-      background: #f8fafc;
-      border-color: #2563eb;
-    }
-
-    .upload-box.active {
-      background: #f0fdf4;
-      border-color: #16a34a;
-    }
-
-    /* ================= BUTTON ================= */
-    .submit-btn {
-      margin-top: 2rem;
-      width: 100%;
-      background: #dc2626;
-      color: #ffffff;
-      border: none;
-      padding: 18px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      border-radius: 14px;
-      cursor: pointer;
-      transition: 0.25s;
-      box-shadow: 0 10px 25px rgba(220,38,38,0.35);
-    }
-
-    .submit-btn:hover {
-      background: #b91c1c;
-      transform: translateY(-2px);
-    }
-
-    .form-note {
-      margin-top: 1.5rem;
-      text-align: center;
-      font-size: 0.875rem;
-      color: #64748b;
-    }
-
-    /* ================= RESPONSIVE ================= */
-    @media (max-width: 768px) {
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-
-      .report-form {
-        padding: 2rem 1.5rem;
-      }
-    }
-  </style>
+        .footer-action { margin-top: 50px; text-align: center; border-top: 2px solid #1a1a1a; padding-top: 20px; }
+        .btn-back { cursor: pointer; color: var(--info); text-decoration: none; font-weight: 600; }
+    </style>
 </head>
 <body>
 
-<section class="report-section">
-  <form class="report-form" id="scamReportForm">
-
-    <h1 class="form-title">Báo Cáo Thủ Đoạn Lừa Đảo</h1>
-    <p class="form-subtitle">
-      Thu thập thông tin nhằm tuyên truyền, cảnh báo và bảo vệ cộng đồng trước tội phạm mạng
-    </p>
-
-    <!-- Họ tên + đối tượng -->
-    <div class="form-row">
-      <input
-        type="text"
-        name="reporterName"
-        placeholder="Họ và tên (có thể ẩn danh)"
-        maxlength="100"
-      />
-
-      <input
-        type="text"
-        name="scammerContact"
-        placeholder="Số điện thoại / Link / Tài khoản lừa đảo *"
-        required
-      />
+<div class="container" id="article-root">
     </div>
-
-    <!-- Loại lừa đảo -->
-    <div class="form-group">
-      <select name="scamType" required>
-        <option value="">Chọn loại hình lừa đảo *</option>
-        <option>Giả danh công an / tòa án</option>
-        <option>Chiếm đoạt tài khoản mạng xã hội</option>
-        <option>Lừa đảo đầu tư / tiền ảo</option>
-        <option>Việc nhẹ lương cao</option>
-        <option>Gọi điện trúng thưởng</option>
-        <option>Mạo danh ngân hàng / ví điện tử</option>
-        <option>Khác</option>
-      </select>
-    </div>
-
-    <!-- Mô tả -->
-    <div class="form-group">
-      <textarea
-        name="description"
-        placeholder="Mô tả chi tiết thủ đoạn: cách tiếp cận, nội dung trao đổi, dấu hiệu nhận biết..."
-        required
-      ></textarea>
-    </div>
-
-    <!-- Upload bằng chứng -->
-    <div class="form-group">
-      <input
-        type="file"
-        id="evidence"
-        name="evidence"
-        accept="image/*,audio/*"
-        hidden
-      />
-
-      <label for="evidence" class="upload-box" id="uploadBox">
-        <i class="fas fa-cloud-upload-alt"></i>
-        <strong>Nhấn để tải lên bằng chứng</strong>
-        <p id="fileName">
-          Ảnh chụp màn hình, ghi âm cuộc gọi (không bắt buộc)
-        </p>
-      </label>
-    </div>
-
-    <!-- Submit -->
-    <button type="submit" class="submit-btn">
-      GỬI BÁO CÁO NGAY
-    </button>
-
-    <p class="form-note">
-      Không thu thập dữ liệu nhạy cảm. Thông tin phục vụ mục đích cảnh báo cộng đồng.
-    </p>
-
-  </form>
-</section>
 
 <script>
-  // ===== Upload hiển thị tên file =====
-  const evidenceInput = document.getElementById("evidence");
-  const fileName = document.getElementById("fileName");
-  const uploadBox = document.getElementById("uploadBox");
+    // Giả lập dữ liệu JSON bạn đã cung cấp (đã thêm phần content)
+    const newsData = [
+        {
+            id: 1,
+            label: "Cảnh báo",
+            title: "Giả danh nhân viên ngân hàng yêu cầu đọc mã OTP",
+            author: "Ban Biên Tập Vệ Binh Số",
+            time: "1 giờ trước",
+            img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800",
+            blacklist_phones: ["0123456789", "0359107806"],
+            content: `
+                <p>Trong thời gian gần đây, chúng tôi liên tục nhận được báo cáo về việc các đối tượng lừa đảo sử dụng công nghệ giả mạo số điện thoại để tiếp cận người dân.</p>
+                <h3>Thủ đoạn tinh vi</h3>
+                <p>Đối tượng tự xưng là nhân viên hỗ trợ thẻ tín dụng, thông báo nạn nhân có một giao dịch lạ hoặc đang được xét duyệt nâng hạn mức thẻ miễn phí. Để "xác minh chính chủ", chúng yêu cầu nạn nhân đọc mã OTP vừa được gửi về điện thoại.</p>
+                <div class="warning-box">
+                    <strong>Lưu ý tuyệt đối:</strong> Mã OTP (One Time Password) là chìa khóa cuối cùng để thực hiện giao dịch. Nhân viên ngân hàng thật <strong>KHÔNG BAO GIỜ</strong> yêu cầu khách hàng cung cấp mã này dưới bất kỳ hình thức nào.
+                </div>
+                <h3>Khuyến nghị xử lý</h3>
+                <p>Nếu bạn đã lỡ cung cấp thông tin, hãy ngay lập tức thực hiện khóa thẻ trên ứng dụng di động hoặc gọi hotline ngân hàng để phong tỏa tài khoản. Đồng thời, chia sẻ thông tin này đến người thân để nâng cao cảnh giác.</p>
+            `
+        }
+    ];
 
-  evidenceInput.addEventListener("change", function () {
-    if (this.files && this.files.length > 0) {
-      fileName.textContent = "Đã chọn: " + this.files[0].name;
-      uploadBox.classList.add("active");
-    } else {
-      fileName.textContent =
-        "Ảnh chụp màn hình, ghi âm cuộc gọi (không bắt buộc)";
-      uploadBox.classList.remove("active");
+    // Hàm render bài viết
+    function renderArticle(data) {
+        const root = document.getElementById('article-root');
+        const post = data[0]; // Lấy bài viết đầu tiên làm demo
+
+        root.innerHTML = `
+            <span class="category-tag">${post.label}</span>
+            <h1>${post.title}</h1>
+            <div class="post-meta">
+                <span>Bởi: <strong>${post.author}</strong></span>
+                <span>${post.time} | 3 phút đọc</span>
+            </div>
+            
+            <img src="${post.img}" class="main-img" alt="Scam Image">
+            <span class="img-caption">Hình ảnh: Các thao tác lừa đảo qua thẻ tín dụng đang ngày càng phổ biến.</span>
+
+            <div class="article-content">
+                ${post.content}
+            </div>
+
+            <div class="blacklist-section">
+                <h4>Dữ liệu nhận diện liên quan:</h4>
+                <p>Các số điện thoại đã bị báo cáo: 
+                    ${post.blacklist_phones.map(p => `<span class="blacklist-item">${p}</span>`).join('')}
+                </p>
+            </div>
+
+            <div class="footer-action">
+                <p>Bạn thấy thông tin này hữu ích? Hãy chia sẻ để cộng đồng cùng phòng tránh.</p>
+                <a href="#" class="btn-back">← Quay lại danh sách tin tức</a>
+            </div>
+        `;
     }
-  });
 
-  // ===== Validate form =====
-  document
-    .getElementById("scamReportForm")
-    .addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const contact = this.scammerContact.value.trim();
-      const type = this.scamType.value;
-      const desc = this.description.value.trim();
-
-      if (!contact || !type || desc.length < 20) {
-        alert(
-          "Vui lòng nhập đầy đủ thông tin và mô tả tối thiểu 20 ký tự."
-        );
-        return;
-      }
-
-      alert(
-        "Báo cáo đã được ghi nhận. Cảm ơn bạn đã chung tay phòng chống lừa đảo!"
-      );
-      window.location.href = "/index.html";
-
-      this.reset();
-      uploadBox.classList.remove("active");
-      fileName.textContent =
-        "Ảnh chụp màn hình, ghi âm cuộc gọi (không bắt buộc)";
-    });
+    // Chạy hàm render
+    renderArticle(newsData);
 </script>
 
 </body>

@@ -13,11 +13,62 @@
 </head>
 
 <body>
-          <div id="header"></div>
-          <div class="container" ></div>
+          <div id="header" ></div>
+
+          <section class="hero">
+                    <div class="container">
+                              <h1 style="font-family: 'Times New Roman', Times, serif;">Kiểm tra <span>An toàn Thông tin</span></h1>
+                              <p>Nhập số điện thoại, tài khoản ngân hàng hoặc link website để kiểm tra độ uy tín.</p>
+                              <div class="search-container">
+                                        <div class="search-box">
+                                                  <input type="text" id="checkInput"
+                                                            placeholder="Nhập SĐT, Email hoặc Link cần kiểm tra...">
+                                                  <button onclick="handleCheck()">KIỂM TRA</button>
+                                        </div>
+                                        <div id="resultArea" class="result-wrapper"></div>
+                              </div>
+                    </div>
+          </section>
+
+          <main class="container main-grid">
+                    <section id="newsFeed">
+                              <div class="section-title">Tin cảnh báo mới nhất</div>
+                    </section>
+
+                    <aside>
+                              <div class="sidebar-card cta-card">
+                                        <h3>Bạn có an toàn?</h3>
+                                        <p style="font-size: 14px; opacity: 0.9;">Thực hiện bài kiểm tra kỹ
+                                                  năng để bảo vệ bản thân trên không
+                                                  gian mạng.</p>
+                                        <button class="btn-white">THỬ NGAY</button>
+                              </div>
+                              <div class="sidebar-card">
+                                        <h4 style="margin-bottom: 15px;"><i class="fas fa-chart-line"></i>
+                                                  Thống kê cộng đồng</h4>
+                                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                                                  <p
+                                                            style="font-size: 14px; color: var(--text-muted); display: flex; justify-content: space-between;">
+                                                            SĐT lừa đảo: <strong>8,422</strong>
+                                                  </p>
+                                                  <p
+                                                            style="font-size: 14px; color: var(--text-muted); display: flex; justify-content: space-between;">
+                                                            Báo cáo hôm nay: <strong
+                                                                      style="color:var(--color-danger)">+42</strong>
+                                                  </p>
+                                                  <p
+                                                            style="font-size: 14px; color: var(--text-muted); display: flex; justify-content: space-between;">
+                                                            Web độc hại: <strong>1,105</strong>
+                                                  </p>
+                                        </div>
+                              </div>
+                    </aside>
+          </main>
           <div id="footer"></div>
 </body>
 
 <script src="/js/layout.js"></script>
+<script src="/js/search.js"></script>
+<script src="/js/news.js"></script>
 
 </html>

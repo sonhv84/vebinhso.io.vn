@@ -4,14 +4,46 @@
 @import url("./base/reset.css");
 @import url("./base/font.css");
 @import url("./base/variables.css");
-@import url("./base/typography.css");
 
 /* ===============================
    LAYOUT (bố cục chính)
    =============================== */
+@import url("./layout/trang-chu.css");
 @import url("./layout/header.css");
 @import url("./layout/grid.css");
 @import url("./layout/footer.css");
 @import url("./layout/gioi-thieu.css");
 @import url("./layout/report.css");
 
+/* Hạ sách */
+          #header {
+                    position: sticky;
+                    top: 0;
+                    z-index: 999;
+          }
+
+          /* css/main.css - Thêm vào cuối file */
+.alert-danger {
+    background: #fef2f2;
+    border: 1px solid #fee2e2;
+    color: #991b1b;
+}
+
+.alert-info {
+    background: #eff6ff;
+    border: 1px solid #dbeafe;
+    color: #1e40af;
+}
+
+.article-body p {
+    text-align: justify;
+}
+
+.tag {
+    padding: 6px 15px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
