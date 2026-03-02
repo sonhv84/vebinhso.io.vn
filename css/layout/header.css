@@ -1,0 +1,180 @@
+/* ===== NAVBAR ===== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.navbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 72px;
+}
+
+/* ===== BRAND ===== */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand img {
+  height: 60px;
+}
+
+.brand-text {
+  font-size: 30px;
+  font-weight: 700;
+  color: #2563eb;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin-left: -12px;
+}
+
+/* ===== MENU (DESKTOP) ===== */
+.navbar-menu {
+  display: flex;
+  gap: 32px;
+  font-weight: 500;
+}
+
+.navbar-menu a {
+  text-decoration: none;
+  color: #475569;
+  transition: color 0.25s ease;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.navbar-menu a:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+/* ===== BUTTON ===== */
+.report-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #dc2626;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(220, 38, 38, 0.4);
+  transition: all 0.25s ease;
+}
+
+.report-btn:hover {
+  background: #b91c1c;
+  transform: scale(1.05);
+}
+
+/* ===== TOGGLE BUTTON ===== */
+.navbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #2563eb;
+  cursor: pointer;
+  padding: 8px;
+  order: 3;
+}
+
+/* ===== MOBILE MENU ===== */
+.navbar-mobile {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 16px;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  position: absolute;
+  top: 72px;
+  left: 0;
+  right: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-mobile a {
+  text-decoration: none;
+  color: #475569;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 0;
+}
+
+.navbar-mobile.active {
+  display: flex;
+}
+
+/* Thiết lập chung cho các link */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  color: #334155;
+  padding: 8px 0;
+  transition: 0.3s;
+}
+
+/* Tạo đường gạch chân bằng pseudo-element */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0; /* Mặc định chiều dài bằng 0 */
+  height: 2px;
+  background-color: #ef4444; /* Màu đỏ thương hiệu */
+  transition: width 0.3s ease;
+}
+
+/* Hiệu ứng khi di chuột (Hover) */
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* HIỆU ỨNG GIỮ NGUYÊN KHI ĐANG Ở TRANG ĐÓ */
+.nav-link.active {
+  color: #ef4444; /* Chữ chuyển đỏ */
+  font-weight: bold;
+}
+
+.nav-link.active::after {
+  width: 100%; /* Gạch chân luôn hiển thị 100% */
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .navbar-menu {
+    display: none;
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+
+  .brand-text {
+    display: none;
+  }
+
+  .navbar-inner {
+    justify-content: space-between;
+  }
+
+  .navbar-action {
+    margin-left: auto;
+    margin-right: 10px;
+  }
+}

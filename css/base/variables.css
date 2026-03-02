@@ -1,0 +1,35 @@
+:root {
+  /* ===============================
+     BRAND / PRIMARY COLORS
+     =============================== */
+  --color-primary: #2563eb;        /* Xanh dương chủ đạo – thương hiệu, tin cậy, an ninh số */
+
+  /* ===============================
+     DANGER / ALERT / CTA
+     =============================== */
+  --color-danger: #dc2626;         /* Đỏ cảnh báo – báo cáo lừa đảo, hành động khẩn cấp */
+  --color-danger-hover: #b91c1c;   /* Đỏ đậm hơn khi hover */
+
+  /* ===============================
+     TEXT COLORS
+     =============================== */
+  --text-main: #334155;            /* Chữ chính – nội dung dài, dễ đọc */
+  --text-muted: #475569;           /* Chữ phụ – menu, mô tả, link */
+
+  /* ===============================
+     BACKGROUND COLORS
+     =============================== */
+  --bg-main: #ffffff;              /* Nền chính – sạch, hiện đại */
+  --bg-soft: #f8fafc;              /* Nền phụ – phân tách section */
+
+  /* ===============================
+     BORDER / DIVIDER
+     =============================== */
+  --border-color: #e5e7eb;          /* Viền, đường phân cách nhẹ */
+
+  /* ===============================
+     SHADOWS
+     =============================== */
+  --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.08);          /* Đổ bóng nhẹ – navbar, card */
+  --shadow-danger: 0 6px 18px rgba(220, 38, 38, 0.4);    /* Đổ bóng CTA – nút cảnh báo */
+}
