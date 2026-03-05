@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi tiết kỹ năng | Vệ Binh Số</title>
+    <link rel="icon" href="./assets/icons/logo_header.ico">
+
     <link rel="stylesheet" href="./css/main.css">
 </head>
 
@@ -33,7 +35,7 @@
 
             try {
 
-                const res = await fetch("/data/skills.json");
+                const res = await fetch("./data/skills.json");
                 const data = await res.json();
 
                 const skill = data.SKILLS_DATA.find(s => s.id === id);
