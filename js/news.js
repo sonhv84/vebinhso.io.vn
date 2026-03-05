@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span class="news-card__time"><i class="far fa-clock"></i> ${item.time}</span>
                     </div>
                     <h3 class="news-card__title">
-                        <a href="/pages/chi-tiet-tin-tuc.html?id=${item.id}" class="news-card__link">${item.title}</a>
+                        <a href="thong-tin-chi-tiet.html?id=${item.id}" class="news-card__link">${item.title}</a>
                     </h3>
                     <p class="news-card__desc">${item.desc}</p>
                     <div class="news-card__footer">
