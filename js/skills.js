@@ -1,18 +1,20 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-    const skillsFeed = document.getElementById('skillsFeed');
-    const paginationContainer = document.getElementById('pagination');
-    const searchInput = document.getElementById('skillSearchInput');
+    const skillsFeed = document.getElementById("skillsFeed");
+    const paginationContainer = document.getElementById("pagination");
+    const searchInput = document.getElementById("skillSearchInput");
 
     let allSkills = [];
     let displayedSkills = [];
+
     const itemsPerPage = 6;
     let currentPage = 1;
-    let currentLabel = 'Tất cả';
+    let currentLabel = "Tất cả";
 
-    // =========================
+
+    // ========================================
     // 1. TYPEWRITER EFFECT
-    // =========================
+    // ========================================
 
     const searchSuggestions = [
         "Kỹ năng bảo mật OTP...",
@@ -26,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isDeleting = false;
 
     function typeEffect() {
+
         if (!searchInput) return;
 
         const currentWord = searchSuggestions[suggestionIndex];
@@ -62,24 +65,40 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(typeEffect, isDeleting ? 30 : 60);
     }
 
-    // GỌI TYPE EFFECT
     typeEffect();
 
 
-    // =========================
-    // 2. LOAD DATA
-    // =========================
+    // ========================================
+    // 2. LOAD DATA JSON
+    // ========================================
 
     async function init() {
+
         try {
-            const res = await fetch('/data/skills.json');
+
+            const res = await fetch("/data/skills.json");
             const data = await res.json();
+
             allSkills = data.SKILLS_DATA || [];
+
             applyFilterAndSearch();
-        } catch (e) {
-            console.error("Lỗi:", e);
+
+        } catch (error) {
+
+            console.error("Lỗi load skills:", error);
+
+            skillsFeed.innerHTML = `
+                <div class="news-grid__empty">
+                    <p>Không thể tải dữ liệu kỹ năng.</p>
+                </div>
+            `;
         }
     }
+
+
+    // ========================================
+    // 3. FILTER + SEARCH
+    // ========================================
 
     function applyFilterAndSearch() {
 
@@ -89,59 +108,117 @@ document.addEventListener('DOMContentLoaded', () => {
 
         displayedSkills = allSkills.filter(item => {
 
-            const matchesLabel =
-                (currentLabel === 'Tất cả' || item.label === currentLabel);
+            const matchLabel =
+                currentLabel === "Tất cả" ||
+                item.label === currentLabel;
 
-            const matchesSearch =
+            const matchSearch =
                 item.title.toLowerCase().includes(searchTerm) ||
                 item.desc.toLowerCase().includes(searchTerm);
 
-            return matchesLabel && matchesSearch;
+            return matchLabel && matchSearch;
+
         });
 
         renderSkillsByPage(1);
     }
 
 
-    // =========================
-    // 3. RENDER & PAGINATION
-    // =========================
+    // ========================================
+    // 4. RENDER SKILLS
+    // ========================================
 
     function renderSkillsByPage(page) {
 
         currentPage = page;
 
         const start = (page - 1) * itemsPerPage;
+
         const pagedItems =
             displayedSkills.slice(start, start + itemsPerPage);
 
         if (pagedItems.length === 0) {
 
-            skillsFeed.innerHTML =
-                `<div class="no-result">
-                    Không tìm thấy kết quả phù hợp với từ khóa "${searchInput.value}"
-                </div>`;
+            skillsFeed.innerHTML = `
+                <div class="news-grid__empty">
+                    <i class="fas fa-search"
+                       style="font-size:40px;color:#cbd5e1;margin-bottom:15px;"></i>
+                    <p>
+                        Không tìm thấy kết quả phù hợp với từ khóa 
+                        "${searchInput.value}"
+                    </p>
+                </div>
+            `;
 
             paginationContainer.innerHTML = "";
+
             return;
         }
 
         skillsFeed.innerHTML = pagedItems.map(item => `
-            <div class="skill-item" onclick="location.href='chi-tiet-ky-nang.html?id=${item.id}'">
-                <div class="skill-thumb-container">
-                    <img src="${item.img}" class="skill-thumb">
+
+            <article class="news-card">
+
+                <div class="news-card__thumb-container">
+                    <img 
+                        src="${item.img}" 
+                        class="news-card__thumb"
+                        alt="${item.title}"
+                        loading="lazy">
                 </div>
-                <div class="skill-content">
-                    <span class="skill-tag ${item.tagClass}">${item.label}</span>
-                    <h3 class="skill-title">${item.title}</h3>
-                    <p class="skill-desc">${item.desc}</p>
-                    <div class="btn-detail">Học ngay →</div>
+
+                <div class="news-card__content">
+
+                    <div class="news-card__meta">
+
+                        <span class="news-card__tag ${item.tagClass}">
+                            ${item.label}
+                        </span>
+
+                        <span class="news-card__time">
+                            <i class="far fa-clock"></i>
+                            ${item.time}
+                        </span>
+
+                    </div>
+
+                    <h3 class="news-card__title">
+                        <a href="/pages/chi-tiet-ky-nang.html?id=${item.id}"
+                           class="news-card__link">
+                           ${item.title}
+                        </a>
+                    </h3>
+
+                    <p class="news-card__desc">
+                        ${item.desc}
+                    </p>
+
+                    <div class="news-card__footer">
+
+                        <a href="/ki-nang-chi-tiet.html?id=${item.id}"
+                           class="news-card__btn-detail">
+
+                            XEM HƯỚNG DẪN
+
+                            <i class="fas fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
                 </div>
-            </div>
-        `).join('');
+
+            </article>
+
+        `).join("");
 
         renderPagination();
     }
+
+
+    // ========================================
+    // 5. PAGINATION
+    // ========================================
 
     function renderPagination() {
 
@@ -149,18 +226,23 @@ document.addEventListener('DOMContentLoaded', () => {
             Math.ceil(displayedSkills.length / itemsPerPage);
 
         if (totalPages <= 1) {
+
             paginationContainer.innerHTML = "";
+
             return;
         }
 
         let html = "";
 
         for (let i = 1; i <= totalPages; i++) {
+
             html += `
                 <button
-                    class="page-node ${i === currentPage ? 'active' : ''}"
+                    class="page-node ${i === currentPage ? "active" : ""}"
                     onclick="changePage(${i})">
+
                     ${i}
+
                 </button>
             `;
         }
@@ -169,17 +251,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // =========================
-    // 4. EVENTS
-    // =========================
+    // ========================================
+    // 6. EVENTS
+    // ========================================
 
     window.filterByLabel = (label) => {
+
         currentLabel = label;
 
-        document.querySelectorAll('.filter-btn')
+        document.querySelectorAll(".filter-btn")
             .forEach(btn =>
                 btn.classList.toggle(
-                    'active',
+                    "active",
                     btn.innerText === label
                 )
             );
@@ -187,14 +270,31 @@ document.addEventListener('DOMContentLoaded', () => {
         applyFilterAndSearch();
     };
 
+
     window.changePage = (page) => {
+
         renderSkillsByPage(page);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     };
 
+
     if (searchInput) {
-        searchInput.addEventListener('input', applyFilterAndSearch);
+
+        searchInput.addEventListener(
+            "input",
+            applyFilterAndSearch
+        );
     }
 
+
+    // ========================================
+    // START
+    // ========================================
+
     init();
+
 });
