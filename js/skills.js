@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
 
-            const res = await fetch("/data/skills.json");
+            const res = await fetch("./data/skills.json");
             const data = await res.json();
 
             allSkills = data.SKILLS_DATA || [];
