@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 5. Render Giao diện & Phân trang ---
     function renderNewsByPage(page) {
         currentPage = page;
-        const isHomePage = window.location.pathname === "/" || window.location.pathname.endsWith("index.html");
+        const isHomePage = window.location.pathname === "./" || window.location.pathname.endsWith("index.html");
         
         let pagedItems = [];
         if (isHomePage) {

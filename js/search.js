@@ -217,11 +217,11 @@ function initNews() {
                     <small style="color:var(--text-muted); font-weight: 500;">${n.time}</small>
                 </div>
 
-                <h3><a href="#">${n.title}</a></h3>
+                <h3><a href="thong-tin-chi-tiet.html?id=${n.id}" class="news-card__link">${n.title}</a></h3>
 
                 <p>${n.desc}</p>
 
-                <a href="#"
+                <a href="thong-tin-chi-tiet.html?id=${n.id}"
                    style="color:var(--color-primary); font-weight:700; text-decoration:none; font-size:13px;">
                    Chi tiết bài viết →
                 </a>
