@@ -142,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="news-card__thumb-container">
                     <img src="${item.img}" class="news-card__thumb" alt="${item.title}" loading="lazy">
                 </div>
+                
                 <div class="news-card__content">
                     <div class="news-card__meta">
                         <span class="news-card__tag ${item.tagClass}">${item.label}</span>

@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
 
                     <h3 class="news-card__title">
-                        <a href="/pages/chi-tiet-ky-nang.html?id=${item.id}"
+                        <a href="ki-nang-chi-tiet.html?id=${item.id}"
                            class="news-card__link">
                            ${item.title}
                         </a>
