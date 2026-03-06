@@ -169,7 +169,7 @@ function initScamReportForm() {
 
     this.reset();
     renderFiles(null);
-    window.location.href = "/index.html";
+    window.location.href = "./index.html";
   });
 }
 
