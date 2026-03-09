@@ -1,92 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Vệ Binh Số</title>
-          <meta name="description"
-                    content="Vệ Binh Số là nền tảng tuyên truyền, cảnh báo và phòng chống lừa đảo trên không gian mạng, giúp người dùng nhận diện và tránh các thủ đoạn lừa đảo trực tuyến.">
-          <meta property="og:title" content="Vệ Binh Số">
-          <meta property="og:description"
-                    content="Vệ Binh Số là nền tảng tuyên truyền, cảnh báo và phòng chống lừa đảo trên không gian mạng, giúp người dùng nhận diện và tránh các thủ đoạn lừa đảo trực tuyến.">
-          <meta property="og:image" content="https://vebinhso.io.vn/assets/images/logo/logo_web.png">
-          <meta property="og:url" content="https://vebinhso.io.vn">
-          <meta property="og:type" content="website">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Vệ Binh Số - Cảnh báo và Phòng chống lừa đảo trực tuyến</title>
+    <meta name="description" content="Vệ Binh Số là nền tảng tuyên truyền, cảnh báo và phòng tránh các thủ đoạn lừa đảo trên không gian mạng. Tra cứu số điện thoại, ngân hàng và website lừa đảo ngay.">
+    <meta name="keywords" content="Vệ Binh Số, phòng chống lừa đảo, an toàn thông tin, lừa đảo trực tuyến, cảnh báo lừa đảo">
+    <link rel="canonical" href="https://vebinhso.io.vn/" />
 
+    <meta property="og:title" content="Vệ Binh Số - Digital Guardian">
+    <meta property="og:description" content="Nền tảng giúp sinh viên và cộng đồng nhận diện các thủ đoạn lừa đảo trực tuyến. Bảo vệ bản thân trên không gian mạng.">
+    <meta property="og:image" content="https://vebinhso.io.vn/assets/images/logo/logo_web.png">
+    <meta property="og:url" content="https://vebinhso.io.vn">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="vi_VN">
 
-          <!-- Google tag (gtag.js) -->
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-GE1SRGFML4"></script>
-          <script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag() { dataLayer.push(arguments); }
-                    gtag('js', new Date());
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Vệ Binh Số",
+      "alternateName": "Digital Guardian",
+      "url": "https://vebinhso.io.vn/",
+      "description": "Nền tảng phòng chống lừa đảo trực tuyến cho sinh viên",
+      "logo": "https://vebinhso.io.vn/assets/images/logo/logo_web.png",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://vebinhso.io.vn/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
 
-                    gtag('config', 'G-GE1SRGFML4');
-          </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GE1SRGFML4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-GE1SRGFML4');
+    </script>
 
-          <link rel="icon" href="./assets/icons/logo_header.ico">
-          <link rel="stylesheet" href="./css/main.css">
+    <link rel="icon" href="./assets/icons/logo_header.ico">
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
-          <div id="header"></div>
+    <div id="header"></div>
 
-          <section class="hero">
-                    <div class="container">
-                              <h1 style="font-family: 'Times New Roman', Times, serif;">Kiểm tra <span>An toàn Thông
-                                                  tin</span></h1>
-                              <p>Nhập số điện thoại, tài khoản ngân hàng hoặc link website để kiểm tra độ uy tín.</p>
-                              <div class="search-container">
-                                        <div class="search-box-header">
-                                                  <input type="text" id="checkInput"
-                                                            placeholder="Nhập SĐT, Email hoặc Link cần kiểm tra...">
-                                                  <button onclick="handleCheck()">KIỂM TRA</button>
-                                        </div>
-                                        <div id="resultArea" class="result-wrapper"></div>
-                              </div>
-                    </div>
-          </section>
+    <section class="hero">
+        <div class="container">
+            <h1 style="font-family: 'Times New Roman', Times, serif;">
+                <span style="color: var(--color-primary, #007bff);">Vệ Binh Số</span> - Kiểm tra An toàn Thông tin
+            </h1>
+            <p>Nhập số điện thoại, tài khoản ngân hàng hoặc link website để kiểm tra độ uy tín từ cộng đồng.</p>
+            
+            <div class="search-container">
+                <div class="search-box-header">
+                    <input type="text" id="checkInput" placeholder="Nhập SĐT, Email hoặc Link cần kiểm tra...">
+                    <button onclick="handleCheck()">KIỂM TRA</button>
+                </div>
+                <div id="resultArea" class="result-wrapper"></div>
+            </div>
+        </div>
+    </section>
 
-          <main class="container main-grid">
-                    <section id="newsFeed">
-                              <div class="section-title">Tin cảnh báo mới nhất</div>
-                    </section>
+    <main class="container main-grid">
+        <section id="newsFeed">
+            <div class="section-title">Tin cảnh báo mới nhất từ Vệ Binh Số</div>
+        </section>
 
-                    <aside>
-                              <div class="sidebar-card cta-card">
-                                        <h3>Bạn có an toàn?</h3>
-                                        <p style="font-size: 14px; opacity: 0.9;">Thực hiện bài kiểm tra kỹ
-                                                  năng để bảo vệ bản thân trên không
-                                                  gian mạng.</p>
-                                        <button class="btn-white">THỬ NGAY</button>
-                              </div>
-                              <div class="sidebar-card">
-                                        <h4 style="margin-bottom: 15px;"><i class="fas fa-chart-line"></i>
-                                                  Thống kê cộng đồng</h4>
-                                        <div style="display: flex; flex-direction: column; gap: 10px;">
-                                                  <p
-                                                            style="font-size: 14px; color: var(--text-muted); display: flex; justify-content: space-between;">
-                                                            SĐT lừa đảo: <strong>1,200</strong>
-                                                  </p>
-                                                  <p
-                                                            style="font-size: 14px; color: var(--text-muted); display: flex; justify-content: space-between;">
-                                                            Báo cáo hôm nay: <strong
-                                                                      style="color:var(--color-danger)">+12</strong>
-                                                  </p>
-                                                  <p
-                                                            style="font-size: 14px; color: var(--text-muted); display: flex; justify-content: space-between;">
-                                                            Web độc hại: <strong>559</strong>
-                                                  </p>
-                                        </div>
-                              </div>
-                    </aside>
-          </main>
-          <div id="footer"></div>
+        <aside>
+            <div class="sidebar-card cta-card">
+                <h3>Bạn có an toàn?</h3>
+                <p style="font-size: 14px; opacity: 0.9;">Thực hiện bài kiểm tra kỹ năng để bảo vệ bản thân trên không gian mạng.</p>
+                <button class="btn-white" onclick="location.href='ky-nang.html'">THỬ NGAY</button>
+            </div>
+            
+            <div class="sidebar-card">
+                <h4 style="margin-bottom: 15px;"><i class="fas fa-chart-line"></i> Thống kê cộng đồng</h4>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <p style="font-size: 14px; color: var(--text-muted); display: flex; justify-content: space-between;">
+                        SĐT lừa đảo: <strong>1,200</strong>
+                    </p>
+                    <p style="font-size: 14px; color: var(--text-muted); display: flex; justify-content: space-between;">
+                        Báo cáo hôm nay: <strong style="color:var(--color-danger, #dc3545)">+12</strong>
+                    </p>
+                    <p style="font-size: 14px; color: var(--text-muted); display: flex; justify-content: space-between;">
+                        Web độc hại: <strong>559</strong>
+                    </p>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="./js/layout.js"></script>
+    <script src="./js/search.js"></script>
+    <script src="./js/news.js"></script>
 </body>
-
-<script src="./js/layout.js"></script>
-<script src="./js/search.js"></script>
-<script src="./js/news.js"></script>
 
 </html>
